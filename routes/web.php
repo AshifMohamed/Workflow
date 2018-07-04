@@ -19,13 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/hod', function () {
-    return view('HOD.HOD_home');
-});
+// Route::get('/hod', function () {
+//     return view('HOD.HOD_home');
+// });
 
-Route::get('/hod/user-access', function () {
-    return view('HOD.HOD_UserAccess');
-});
+// Route::get('/hod/user-access', function () {
+//     return view('HOD.HOD_UserAccess');
+// });
 
 Route::get('/hr', function () {
     return view('HR.HR_home');
@@ -50,4 +50,7 @@ Route::get('/it', function () {
 Route::get('/it/user-access', function () {
     return view('IT.IT_UserAccess');
 });
+
+Route::resource('hod','HOD_UserAccessController');
+
 

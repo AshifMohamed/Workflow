@@ -4,11 +4,11 @@
  <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="active"><a href="{{ route('hod.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <!-- <li><a href="{{ url('/userlist')}}"><i class="fa fa-users"></i> <span>User List</span></a></li>
         <li><a href="{{ url('/singlemsg')}}"><i class="fa fa-envelope"></i> <span>Single Message</span></a></li>
         <li><a href="{{ url('/bulkmsg')}}"><i class="fa fa-database"></i> <span>Bulk Message</span></a></li> -->
-        <li><a href="#"><i class="fa fa-users"></i> <span>User Access</span></a></li>
+        <li><a href="{{ route('hod.create') }}"><i class="fa fa-users"></i> <span>User Access</span></a></li>
 
         <!-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -43,8 +43,8 @@
 
  <section class="content container-fluid">
  <div class="row">
-        <form>
-
+ <form  method="POST" action="{{ route('hod.store')}}">
+                {{ csrf_field() }}
             <!-- left column -->
             <div class="box box-primary">
 
@@ -56,37 +56,34 @@
 
     <div class="form-group col-md-6">
         <label >First Name</label>
-        <input  class="form-control input-group-lg reg_name" type="text" name="Fname" id="Fname" disabled/>
+        <input  class="form-control input-group-lg reg_name" type="text" name="fname" id="fname" required/>
     </div>
 
     <div class="form-group col-md-6">
         <label>Last Name</label>
-        <input class="form-control pull-right" name="Lname" id="Lname" type="text" disabled>
+        <input class="form-control pull-right" name="lname" id="lname" type="text" required>
     </div>
     <div class="form-group col-md-6">
         <label >Department</label>
-        <select class="form-control" id="Department" name="Department" disabled>
-            <option>Select</option>
-            <option>Intern</option>
+        <select class="form-control" id="department" name="department" required>
+            <option>HR</option>
+            <option>IT</option>
             <option>Trainee</option>
-            <option>Associate</option>
-            <option>Project Manager</option>
-            <option>Department Head</option>
         </select>
     </div>
     <div class="form-group col-md-6">
         <label >Designation</label>
-        <input  name="designation" class="form-control input-group-lg reg_name" disabled type="text" id="designation "/>
+        <input  name="designation" class="form-control input-group-lg reg_name"  type="text" id="designation" required/>
     </div>
     
     <!-- </div> -->
     <div class="form-group col-md-6">
         <label >Working Hours</label>
-        <input  class="form-control input-group-lg reg_name" type="text" name="WorkingHrs" id="WorkingHrs" disabled/>
+        <input  class="form-control input-group-lg reg_name" type="number" name="workingHrs" id="workingHrs" required />
     </div>
     <div class="form-group col-md-6">
         <label > Email</label>
-        <input  name="email" class="form-control input-group-lg reg_name" disabled type="text" id="email "/>
+        <input  name="email" class="form-control input-group-lg reg_name"  type="email" id="email " required/>
     </div>
     <div class="form-group col-md-12">
         <br>

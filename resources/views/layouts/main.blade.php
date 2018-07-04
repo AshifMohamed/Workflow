@@ -27,7 +27,7 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="  {{ URL::asset('css/AdminLTE.min.css') }}">
-
+  <link rel="stylesheet" href="  {{ URL::asset('css/app.css') }}">
     <!-- <link rel="stylesheet" href="  {{ URL::asset('css/select2.min.css') }}"> -->
 
   <link rel="stylesheet" href="  {{ URL::asset('css/skin-blue.min.css') }}">
@@ -75,9 +75,9 @@ desired effect
     <!-- Logo -->
     <a class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>T</b>XT</span>
+      <span class="logo-mini"><b>T</b>EL</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>TEXT</b>HOUSE</span>
+      <span class="logo-lg"><b>TEL</b>LIDA</span>
     </a>
 
     <!-- Header Navbar -->
@@ -188,6 +188,7 @@ desired effect
 <!-- <script src="{{ URL::asset('js/select2.full.min.js') }}"></script> -->
 
 <script src="{{ URL::asset('js/adminlte.min.js') }}"></script>
+<script src="{{ URL::asset('js/app.js') }}"></script>
 
 <!-- <script src="{{ URL::asset('js/icheck.min.js') }}"></script> -->
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestsTable extends Migration
+class CreateProcessRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
-            $table->increments('request_id')->primary();
+        Schema::create('process__requests', function (Blueprint $table) {
+            $table->increments('request_id');
             $table->string('request_type');
             $table->boolean('hod_request')->default(FALSE);
             $table->boolean('hr_request')->default(FALSE);
             $table->boolean('ciso_request')->default(FALSE);
-            $table->boolean('it_request')->default(False);
+            $table->boolean('it_request')->default(FALSE);
             $table->string('request_status');    
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('process__requests');
     }
 }

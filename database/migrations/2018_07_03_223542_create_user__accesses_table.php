@@ -14,7 +14,7 @@ class CreateUserAccessesTable extends Migration
     public function up()
     {
         Schema::create('user__accesses', function (Blueprint $table) {
-            $table->increments('user_access_id')->primary();
+            $table->increments('user_access_id');
             $table->unsignedInteger('request_id');
             $table->string('first_name');
             $table->string('last_name');
@@ -22,16 +22,16 @@ class CreateUserAccessesTable extends Migration
             $table->string('designation');
             $table->string('working_hours');
             $table->string('email');
-            $table->string('nic');
-            $table->string('gender');
-            $table->string('ciso');
-            $table->string('display_name');
-            $table->string('logon_id');
+            $table->string('nic')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('ciso')->nullable();
+            $table->string('display_name')->nullable();
+            $table->string('logon_id')->nullable();
             $table->timestamps();
         });
 
         Schema::table('user__accesses', function (Blueprint $table) {
-            $table->foreign('request_id')->references('request_id')->on('requests');
+            $table->foreign('request_id')->references('request_id')->on('process__requests');
 
         });
     }

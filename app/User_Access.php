@@ -16,6 +16,6 @@ class User_Access extends Model
 
     public function request()
     {
-        return $this->hasOne('App\Request','request_id');
+        return $this->hasOne('App\Process_Request','request_id');
     }
 }
