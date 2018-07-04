@@ -4,7 +4,7 @@
  <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="{{ route('it.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="active"><a href="{{ route('ciso.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
        
 
         <!-- <li class="treeview">
@@ -39,9 +39,7 @@
 </section>
 
  <section class="content container-fluid">
- <form  method="POST" action="{{ route('it.update',$UserAccess->user_access_id)}}">
- <input type="hidden" name="_method" value="PUT">
-    {{ csrf_field() }}
+ 
  <div class="row">
 
             <!-- left column -->
@@ -53,7 +51,7 @@
                         <h3 class="box-title">User Details</h3>
                     </div>
 
-     <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
         <label >First Name</label>
         <input  class="form-control input-group-lg reg_name" type="text" name="fname" id="fname" value="{{$UserAccess->first_name}}" disabled/>
     </div>
@@ -68,7 +66,7 @@
     </div>
     <div class="form-group col-md-6">
         <label >Designation</label>
-        <input  name="designation" class="form-control input-group-lg reg_name" disabled type="text" id="designation" value="{{$UserAccess->designation}}" disabled/>
+        <input  name="designation" class="form-control input-group-lg reg_name" disabled type="text" id="designation " value="{{$UserAccess->designation}}"/>
     </div>
     
     <!-- </div> -->
@@ -78,14 +76,14 @@
     </div>
     <div class="form-group col-md-6">
         <label > Email</label>
-        <input  name="email" class="form-control input-group-lg reg_name" disabled type="text" id="email" value="{{$UserAccess->email}}" disabled/>
+        <input  name="email" class="form-control input-group-lg reg_name" disabled type="text" id="email" value="{{$UserAccess->email}}"/>
     </div>
     <!-- <div class="form-group col-md-12">
         <br>
         <button type="submit" name="HODsubmit" class="btn btn-primary">Submit</button>
     </div> -->
             </div>
-   </div>
+]    </div>
 
     
     <div class="row">
@@ -105,7 +103,7 @@
                         <h3 class="box-title"></h3>
                     </div>
 
-                     <div class="form-group col-md-6">
+                    <div class="form-group col-md-6">
         <label>NIC</label>
         <input class="form-control pull-right" name="nic" id="nic" type="text" value="{{$UserAccess->nic}}" disabled >
     </div>
@@ -135,42 +133,10 @@
                     </div>
     <div class="form-group col-md-6">
         <label>CISO</label>
-        <input class="form-control pull-right" name="ciso" id="ciso" type="text" value="{{$UserAccess->ciso}}" disabled >
-    </div>
-      
-            </div>
-    </div>
-
-    <div class="row">
-    <section class="content-header">
-    <h1>
-        SECTION 04: Implementation
-        <small>IT Division use only</small>
-    </h1>
-    </section>
-
-            <!-- left column -->
-            <div class="box box-primary">
-
-                <!-- /.box-header -->
-                <!-- <div style="background-color:white" class="col-md-6"> -->
-                    <div class="box-header with-border" style="margin-bottom:2%">
-                        <h3 class="box-title"></h3>
-                    </div>
-    <div class="form-group col-md-6">
-        <label>Display Name</label>
-        <input class="form-control pull-right" name="display_name" id="display_name" type="text" required>
-    </div>
-    <div class="form-group col-md-6">
-        <label>User Logon ID</label>
-        <input class="form-control pull-right" name="logon_id" id="logon_id" type="text" required>
+        <input class="form-control pull-right" name="ciso" id="ciso" type="text" value="{{$UserAccess->ciso}}" disabled>
     </div>
    
-    <div class="form-group col-md-offset-9 col-md-3 ">
-        <button type="button" name="btn_reject" style="margin-left:1%"class="pull-right btn btn-danger">Reject &nbsp</button>
-        <button type="submit" name="btn_approve" class="pull-right btn btn-primary">Approve</button>
-    </div>
-    </form>
+    
             </div>
     </div>
     

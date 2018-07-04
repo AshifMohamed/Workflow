@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class User_Access extends Model
 {
     //
+    protected $primaryKey = 'user_access_id';
+
     protected $fillable = [
         'request_id', 'first_name', 'last_name',
         'department','designation','working_hours',

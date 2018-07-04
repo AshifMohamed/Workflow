@@ -188,7 +188,7 @@ desired effect
 <!-- <script src="{{ URL::asset('js/select2.full.min.js') }}"></script> -->
 
 <script src="{{ URL::asset('js/adminlte.min.js') }}"></script>
-<script src="{{ URL::asset('js/app.js') }}"></script>
+<!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
 
 <!-- <script src="{{ URL::asset('js/icheck.min.js') }}"></script> -->
 

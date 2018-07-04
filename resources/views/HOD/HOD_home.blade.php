@@ -72,8 +72,8 @@
          <td><span class="label label-success">{{ $request->request_status}}</span></td> 
           @endif
         <td>
-            <a href="#" class="btn btn-sm btn-primary"  title="Edit" ><i class="glyphicon glyphicon-pencil"></i> Edit  </a>
-            <a href="#" class="btn btn-sm btn-success"  title="View" ><i class="glyphicon glyphicon-pencil"></i> View  </a>
+            <a href="{{ route('hod.edit',$request->request_id) }}" class="btn btn-sm btn-primary"  title="Edit" ><i class="glyphicon glyphicon-pencil"></i> Edit  </a>
+            <a href="{{ route('hod.show',$request->request_id) }}" class="btn btn-sm btn-success"  title="View" ><i class="glyphicon glyphicon-pencil"></i> View  </a>
           
         </td>
     </tr>

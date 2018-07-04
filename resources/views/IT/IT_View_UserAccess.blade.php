@@ -6,7 +6,6 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="{{ route('it.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
        
-
         <!-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -39,9 +38,7 @@
 </section>
 
  <section class="content container-fluid">
- <form  method="POST" action="{{ route('it.update',$UserAccess->user_access_id)}}">
- <input type="hidden" name="_method" value="PUT">
-    {{ csrf_field() }}
+ 
  <div class="row">
 
             <!-- left column -->
@@ -159,18 +156,14 @@
                     </div>
     <div class="form-group col-md-6">
         <label>Display Name</label>
-        <input class="form-control pull-right" name="display_name" id="display_name" type="text" required>
+        <input class="form-control pull-right" name="display_name" id="display_name" type="text" value="{{$UserAccess->display_name}}" disabled>
     </div>
     <div class="form-group col-md-6">
         <label>User Logon ID</label>
-        <input class="form-control pull-right" name="logon_id" id="logon_id" type="text" required>
+        <input class="form-control pull-right" name="logon_id" id="logon_id" type="text" value="{{$UserAccess->logon_id}}" disabled>
     </div>
    
-    <div class="form-group col-md-offset-9 col-md-3 ">
-        <button type="button" name="btn_reject" style="margin-left:1%"class="pull-right btn btn-danger">Reject &nbsp</button>
-        <button type="submit" name="btn_approve" class="pull-right btn btn-primary">Approve</button>
-    </div>
-    </form>
+    
             </div>
     </div>
     

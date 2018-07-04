@@ -4,9 +4,8 @@
  <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="{{ url('/')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="active"><a href="{{ route('ciso.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
        
-        <li><a href="#"><i class="fa fa-users"></i> <span>User Access</span></a></li>
 
         <!-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -40,6 +39,9 @@
 </section>
 
  <section class="content container-fluid">
+ <form  method="POST" action="{{ route('ciso.update',$UserAccess->user_access_id)}}">
+ <input type="hidden" name="_method" value="PUT">
+    {{ csrf_field() }}
  <div class="row">
 
             <!-- left column -->
@@ -53,30 +55,30 @@
 
     <div class="form-group col-md-6">
         <label >First Name</label>
-        <input  class="form-control input-group-lg reg_name" type="text" name="Fname" id="Fname" disabled/>
+        <input  class="form-control input-group-lg reg_name" type="text" name="fname" id="fname" value="{{$UserAccess->first_name}}" disabled/>
     </div>
 
     <div class="form-group col-md-6">
         <label>Last Name</label>
-        <input class="form-control pull-right" name="Lname" id="Lname" type="text" disabled>
+        <input class="form-control pull-right" name="lname" id="lname" type="text" value="{{$UserAccess->last_name}}" disabled>
     </div>
     <div class="form-group col-md-6">
         <label >Department</label>
-        <input  class="form-control input-group-lg reg_name" type="text" name="department" id="department" disabled/>
+        <input  class="form-control input-group-lg reg_name" type="text" name="department" id="department" value="{{$UserAccess->department}}" disabled/>
     </div>
     <div class="form-group col-md-6">
         <label >Designation</label>
-        <input  name="designation" class="form-control input-group-lg reg_name" disabled type="text" id="designation "/>
+        <input  name="designation" class="form-control input-group-lg reg_name" disabled type="text" id="designation " value="{{$UserAccess->designation}}"/>
     </div>
     
     <!-- </div> -->
     <div class="form-group col-md-6">
         <label >Working Hours</label>
-        <input  class="form-control input-group-lg reg_name" type="text" name="WorkingHrs" id="WorkingHrs" disabled/>
+        <input  class="form-control input-group-lg reg_name" type="text" name="workingHrs" id="workingHrs" value="{{$UserAccess->working_hours}}" disabled/>
     </div>
     <div class="form-group col-md-6">
         <label > Email</label>
-        <input  name="email" class="form-control input-group-lg reg_name" disabled type="text" id="email "/>
+        <input  name="email" class="form-control input-group-lg reg_name" disabled type="text" id="email" value="{{$UserAccess->email}}"/>
     </div>
     <!-- <div class="form-group col-md-12">
         <br>
@@ -105,11 +107,11 @@
 
                     <div class="form-group col-md-6">
         <label>NIC</label>
-        <input class="form-control pull-right" name="nic" id="nic" type="text" disabled >
+        <input class="form-control pull-right" name="nic" id="nic" type="text" value="{{$UserAccess->nic}}" disabled >
     </div>
     <div class="form-group col-md-6">
         <label >Gender</label>
-        <input class="form-control pull-right" name="gender" id="gender" type="text" disabled >
+        <input class="form-control pull-right" name="gender" id="gender" type="text" value="{{$UserAccess->gender}}" disabled >
     </div>
 
             </div>
@@ -131,10 +133,9 @@
                     <div class="box-header with-border" style="margin-bottom:2%">
                         <h3 class="box-title"></h3>
                     </div>
-    <form>
     <div class="form-group col-md-6">
         <label>CISO</label>
-        <input class="form-control pull-right" name="ciso" id="ciso" type="text" >
+        <input class="form-control pull-right" name="ciso" id="ciso" type="text" required>
     </div>
    
     <div class="form-group col-md-offset-9 col-md-3 ">
