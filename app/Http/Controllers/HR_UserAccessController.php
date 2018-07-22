@@ -8,6 +8,13 @@ use App\User_Access;
 
 class HR_UserAccessController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkHR');
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +24,7 @@ class HR_UserAccessController extends Controller
     {
         //
         $requests = Process_Request::where('hr_request', TRUE)->paginate(5);
-        return view('HR.HR_home',compact('requests',$requests))
+        return view('HR.HR_dashboard',compact('requests',$requests))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -52,8 +59,42 @@ class HR_UserAccessController extends Controller
     {
         //
         $UserAccess = User_Access::where('request_id',$id)->first();
+        $Process_Request = Process_Request::find($id);
 
-        return view('HR.HR_View_UserAccess', compact('UserAccess', $UserAccess));
+        if($Process_Request->isCompleted()){
+
+            return view('HR.HR_View_UserAccess_Completed', compact('UserAccess', $UserAccess));
+
+        }elseif ($Process_Request->it_request) {
+
+            return view('HR.HR_View_UserAccess_CISO', compact('UserAccess', $UserAccess));
+
+        }else {
+            
+            return view('HR.HR_View_UserAccess', compact('UserAccess', $UserAccess));
+        }
+
+    }
+
+    public function declineRequestHR()
+    {
+        //
+        // return view('HOD.HOD_View_UserAccess', compact('UserAccess', $UserAccess));
+
+        // $UserAccess = User_Access::find($request->request_id);
+        // echo "fsafsa";
+
+        $requestId = $_GET['request'];
+       
+        $Process_Request = Process_Request::find($requestId);
+
+        $Process_Request->request_status = "Declined";
+
+        $Process_Request->save();
+        // User_Access::find($id)->update($request->all());
+
+        // return redirect()->route('hod.index')
+        //     ->with('success', 'Request Declined');
     }
 
     /**

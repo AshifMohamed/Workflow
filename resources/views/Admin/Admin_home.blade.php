@@ -115,8 +115,7 @@ desired effect
           </li>
         @endguest
          
-        <li class="dropdown notifications-menu" >
-            <!-- Menu toggle button -->
+        <!-- <li class="dropdown notifications-menu" >
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">10</span>
@@ -124,7 +123,6 @@ desired effect
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
-                <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
                   
                   <li>
@@ -132,12 +130,11 @@ desired effect
                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
                     </a>
                   </li>
-                  <!-- end notification -->
                 </ul>
               </li>
               <li class="footer"><a href="#">View all</a></li>
             </ul>
-          </li>
+          </li> -->
 
         </ul>
       </div>
@@ -176,6 +173,32 @@ desired effect
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
+
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">HEADER</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="{{ route('admin.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <!-- <li><a href="{{ url('/userlist')}}"><i class="fa fa-users"></i> <span>User List</span></a></li>
+        <li><a href="{{ url('/singlemsg')}}"><i class="fa fa-envelope"></i> <span>Single Message</span></a></li>
+        <li><a href="{{ url('/bulkmsg')}}"><i class="fa fa-database"></i> <span>Bulk Message</span></a></li> -->
+        <!-- <li><a href="{{ route('hod.create') }}"><i class="fa fa-users"></i> <span>User Access</span></a></li> -->
+
+        <!-- <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Link in level 2</a></li>
+          </ul>
+        </li> -->
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
      
 
   @yield('content')
@@ -216,42 +239,7 @@ desired effect
 <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
 
 <!-- <script src="{{ URL::asset('js/icheck.min.js') }}"></script> -->
-    <script>
-        $(function() {
-
-          $( "#btn_reject" ).click(function(e) {
-            console.log("Came");
-
-            // e.preventDefault();
-
-           var data = $('#btn_reject').data('request');
-           console.log(data);
-           console.log("main");
-          //  var attrmethod = $('.als-item').attr('data-loc-subject');
-
-          $.ajaxSetup({
-        headers: {
-            'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
-        }
-    });
-
-           $.ajax({
-               method: 'GET', // Type of response and matches what we said in the route
-                url: '/decline-request/{request}', // This is the url we gave in the route
-                data: {'request' : data}, // a JSON object to send back
-                success: function(response){ // What to do if we succeed
-        console.log(response); 
-        location.href = "http://localhost:8000/hod"
-    },
    
-});
-    
-          });
-            
-            
-            
-        });
-    </script>
 </body>
 
 

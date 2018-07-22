@@ -1,7 +1,183 @@
-@extends('layouts.main')
-@section('content')
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ config('app.name', 'Tellida') }}</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
- <ul class="sidebar-menu" data-widget="tree">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-9/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.1/css/ionic.min.css" /> -->
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.8.3/css/ionicons/css/ionicons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-9/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.1/css/ionic.min.css" />
+
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" />
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css" /> -->
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="  {{ URL::asset('css/AdminLTE.min.css') }}">
+  <link rel="stylesheet" href="  {{ URL::asset('css/app.css') }}">
+    <!-- <link rel="stylesheet" href="  {{ URL::asset('css/select2.min.css') }}"> -->
+
+  <link rel="stylesheet" href="  {{ URL::asset('css/skin-blue.min.css') }}">
+
+  <!-- <link rel="stylesheet" href="  {{ URL::asset('css/icheck-blue.css') }}"> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+    <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>T</b>EL</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>TEL</b>LIDA</span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav ">
+
+           @guest
+          <li><a href="{{ route('login') }}">Login</a></li>
+          <li><a href="{{ route('register') }}">Register</a></li>
+        @else
+          <li class="dropdown">
+            <a style="color: white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                  Logout
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </li>
+            </ul>
+          </li>
+        @endguest
+         
+        <li class="dropdown notifications-menu" >
+            <!-- Menu toggle button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- Inner Menu: contains the notifications -->
+                <ul class="menu">
+                  
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                  <!-- end notification -->
+                </ul>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+        <div class="img-circle"></div>
+          <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
+        </div>
+        <div class="pull-left info">
+          <!-- <p>User</p> -->
+          <!-- Status -->
+          <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
+        </div>
+      </div>
+
+      <!-- search form (Optional) -->
+      <!-- <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control"  >
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+      </form>
+       -->
+      <!-- /.search form -->
+
+      <!-- Sidebar Menu -->
+
+      <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="{{ route('hod.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
@@ -26,65 +202,82 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+     
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-
-  <!-- @yield('content') -->
+  @yield('content')
   <!-- /.content -->
-  <section class="content-header">
-    <h1>
-        Page Header
-        <small>Optional description</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-    </ol>
-  </section>
+  <!-- /.content-wrapper -->
 
-    <section style="background-color:white" class="content container-fluid">
-
-
-@if ($message = Session::get('success'))
-    <div class="alert alert-success alert-dismissable">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-        <p>{{ $message }}</p>
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Anything you want
     </div>
-@endif
-<div class="table-responsive no-padding">
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+  </footer>
 
-<table id="SMS" class="table table-bordered table-hover " >
-    <tbody>
-    <tr>
-        <th>Number</th>
-        <th >Request Type</th>
-        <th>Request Status</th>
-        <th >Action</th>
-    </tr>
-    @foreach ($requests as $request)
-    <tr>
-        <td>{{ ++$i }}</td>
-         <td>{{ $request->request_type}}</td> 
-         @if( $request->request_status.equalToIgnoringCase("Processing"))
-        <td><span class="label label-danger">{{ $request->request_status}}</span></td> 
-         @else
-         <td><span class="label label-success">{{ $request->request_status}}</span></td> 
-          @endif
-        <td>
-            <a href="{{ route('hod.edit',$request->request_id) }}" class="btn btn-sm btn-primary"  title="Edit" ><i class="glyphicon glyphicon-pencil"></i> Edit  </a>
-            <a href="{{ route('hod.show',$request->request_id) }}" class="btn btn-sm btn-success"  title="View" ><i class="glyphicon glyphicon-pencil"></i> View  </a>
-          
-        </td>
-    </tr>
-    @endforeach
-
-    </tbody>
-</table>
-{!! $requests->links() !!}
-</div>
-
-</section>
   </div>
 
-@endsection
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.1/js/bootstrap-colorpicker.min.js"></script> -->
+<!-- AdminLTE App -->
+<!-- <script src="{{ URL::asset('js/select2.full.min.js') }}"></script> -->
+
+<script src="{{ URL::asset('js/adminlte.min.js') }}"></script>
+<!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
+
+<!-- <script src="{{ URL::asset('js/icheck.min.js') }}"></script> -->
+    <script>
+        $(function() {
+
+          $( "#btn_reject" ).click(function(e) {
+            console.log("Came");
+
+            // e.preventDefault();
+
+           var data = $('#btn_reject').data('request');
+           console.log(data);
+          //  var attrmethod = $('.als-item').attr('data-loc-subject');
+
+          $.ajaxSetup({
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
+        }
+    });
+
+           $.ajax({
+               method: 'GET', // Type of response and matches what we said in the route
+                url: '/decline-request/{request}', // This is the url we gave in the route
+                data: {'request' : data}, // a JSON object to send back
+                success: function(response){ // What to do if we succeed
+        console.log(response); 
+        location.href = "http://localhost:8000/hod"
+    },
+   
+});
+    
+          });
+            
+            
+            
+        });
+    </script>
+</body>
+
+
+</html>

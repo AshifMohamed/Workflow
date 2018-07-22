@@ -1,29 +1,7 @@
-@extends('layouts.main')
+@extends('IT.IT_home')
 @section('content')
 
- <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="{{ route('it.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-       
-
-        <!-- <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li> -->
-      </ul>
-      <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
+ 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
@@ -167,7 +145,7 @@
     </div>
    
     <div class="form-group col-md-offset-9 col-md-3 ">
-        <button type="button" name="btn_reject" style="margin-left:1%"class="pull-right btn btn-danger">Reject &nbsp</button>
+        <button type="button" id="btn_reject" name="btn_reject" data-request="{{$UserAccess->request_id}}" style="margin-left:1%"class="pull-right btn btn-danger">Reject &nbsp</button>
         <button type="submit" name="btn_approve" class="pull-right btn btn-primary">Approve</button>
     </div>
     </form>

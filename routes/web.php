@@ -11,9 +11,14 @@
 |
 */
 
+// Route::get('/', function () {
+
+
+// });
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth/login');
+})->middleware('auth','role');
 
 Auth::routes();
 
@@ -27,8 +32,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 //     return view('HOD.HOD_UserAccess');
 // });
 
+// Route::get('/decline-request','HOD_UserAccessController@index');
+
+Route::get('decline-request_HR/{request}','HR_UserAccessController@declineRequestHR');
+
+Route::get('decline-request_CISO/{request}','CISO_UserAccessController@declineRequestCISO');
+
+Route::get('decline-request_IT/{request}','IT_UserAccessController@declineRequestIT');
+
+//->middleware('auth');
 
 
+Route::resource('admin','AdminController');
 
 Route::resource('hod','HOD_UserAccessController');
 

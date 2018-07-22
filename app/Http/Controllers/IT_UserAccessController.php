@@ -8,6 +8,13 @@ use App\User_Access;
 
 class IT_UserAccessController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkIT');
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +24,7 @@ class IT_UserAccessController extends Controller
     {
         //
         $requests = Process_Request::where('it_request', TRUE)->paginate(5);
-        return view('IT.IT_home',compact('requests',$requests))
+        return view('IT.IT_dashboard',compact('requests',$requests))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -55,6 +62,28 @@ class IT_UserAccessController extends Controller
 
         return view('IT.IT_View_UserAccess', compact('UserAccess', $UserAccess));
     }
+
+    public function declineRequestIT()
+    {
+        //
+        // return view('HOD.HOD_View_UserAccess', compact('UserAccess', $UserAccess));
+
+        // $UserAccess = User_Access::find($request->request_id);
+        // echo "fsafsa";
+
+        $requestId = $_GET['request'];
+       
+        $Process_Request = Process_Request::find($requestId);
+
+        $Process_Request->request_status = "Declined";
+
+        $Process_Request->save();
+        // User_Access::find($id)->update($request->all());
+
+        // return redirect()->route('hod.index')
+        //     ->with('success', 'Request Declined');
+    }
+
 
     /**
      * Show the form for editing the specified resource.

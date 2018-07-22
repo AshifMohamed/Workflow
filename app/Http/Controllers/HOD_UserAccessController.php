@@ -8,6 +8,12 @@ use App\User_Access;
 
 class HOD_UserAccessController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkHOD');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,7 @@ class HOD_UserAccessController extends Controller
     {
         //
         $requests = Process_Request::where('hod_request', TRUE)->paginate(5);
-        return view('HOD.HOD_home',compact('requests',$requests))
+        return view('HOD.HOD_dashboard',compact('requests',$requests))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -52,7 +58,7 @@ class HOD_UserAccessController extends Controller
         
         echo  $Process_Request;
         $UserAccess = new User_Access;
-        $UserAccess->request_id = $Process_Request->id;
+        $UserAccess->request_id = $Process_Request->request_id;
         $UserAccess->first_name = $request->fname;
         $UserAccess->last_name = $request->lname;
         $UserAccess->department = $request->department;
@@ -76,9 +82,48 @@ class HOD_UserAccessController extends Controller
     {
         //
         $UserAccess = User_Access::where('request_id',$id)->first();
+        $Process_Request = Process_Request::find($id);
 
+        if($Process_Request->isCompleted()){
+
+            return view('HOD.HOD_View_UserAccess_Completed', compact('UserAccess', $UserAccess));
+
+        }elseif ($Process_Request->it_request) {
+
+            return view('HOD.HOD_View_UserAccess_CISO', compact('UserAccess', $UserAccess));
+
+        }elseif ($Process_Request->ciso_request) {
+
+            return view('HOD.HOD_View_UserAccess_HR', compact('UserAccess', $UserAccess));
+
+        }else {
+            
+            return view('HOD.HOD_View_UserAccess', compact('UserAccess', $UserAccess));
+        }
+
+        
+
+    }
+
+    public function declineRequest()
+    {
+        //
         return view('HOD.HOD_View_UserAccess', compact('UserAccess', $UserAccess));
 
+        // $UserAccess = User_Access::find($request->request_id);
+        // echo "fsafsa";
+
+        // $requestId = $_GET['request'];
+       
+        // $Process_Request = Process_Request::find($requestId);
+
+        // $Process_Request->request_status = "Declined";
+
+        // $Process_Request->save();
+        // User_Access::find($id)->update($request->all());
+
+        // return redirect()->route('hod.index')
+        //     ->with('success', 'Request Declined');
     }
 
     /**
